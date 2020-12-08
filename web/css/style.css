@@ -57,12 +57,20 @@ body{
     background: none!important;
     border: none!important;
 }
+.navbar-brand h1 .hosting {
+    font-size: 1.4em;
+    text-decoration: none;
+    color: #585CA7;
+	font-family: 'Voltaire', sans-serif;
+}
+
 .navbar-brand h1 a {
     font-size: 1.4em;
     text-decoration: none;
-    color: #222;
+    color: #e7663f;
 	font-family: 'Voltaire', sans-serif;
 }
+
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
     color: #7277d5;
     background:none !important;

@@ -1,13 +1,13 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE HTML>
 <html>
 <head>
-	<?php include('header.php'); ?>
+	<?php 
+		include('header.php');
+		include('class/Dbcon.php');
+		
+		$Dbcon = new Dbcon();
+
+	?>
 </head>
 <body>
 <!---banner--->
@@ -325,9 +325,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 			</div>
 		<!---posts--->
-	</div>	
+	</div>
+
 	<div>
 		<?php require('footer.php') ?>
 	</div>
+
 </body>
 </html>

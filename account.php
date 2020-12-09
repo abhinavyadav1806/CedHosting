@@ -35,7 +35,7 @@
                         <h3>personal information</h3>
                         <div>
                             <span>Name<label>*</label></span>
-                            <input type="text" name="name" class="lugwt" required onkeydown="return alphaonly(event);">
+                            <input type="text" name="name" class="lugwt" id="name" required onkeydown="return alphaonly(event);">
                         </div>
 
                         <div>

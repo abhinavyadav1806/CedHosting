@@ -1,9 +1,4 @@
-var count_mob=0;
-var count=0;
-var temp=0;
-var i=0;
-var i2=0;
-var count2=0;
+var count_mob=0;var count=0;var temp=0;var i=0;var i2=0;var count2=0;
 
 function alphaonly(button) 
 {

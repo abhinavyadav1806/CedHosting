@@ -75,7 +75,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li><a href="blog.php">Blog</a></li>
                         <li><a href="contact.php">Contact</a></li>
                         <li><a><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
-                        <li><a href="login.php">Login</a></li>
+                        <!-- <li><a href="login.php" id="login">Login</a></li>
+                        <li><a style="visibility: hidden" id="logout">logout </a></li> -->
+
+                        <?php
+                            if (isset($_SESSION['userdata'])) 
+                            {
+                                if ($_SESSION['userdata']['is_admin'] == 0) 
+                                { ?>
+                                    <li><a href="logout.php">Logout</a></li>
+                                    <?php 
+                                }
+                            } 
+                            else 
+                            { 
+                                ?> 
+                                <li class="<?php if ($file[0] == "login.php") : ?> active<?php endif; ?>">
+                                    <a href="login.php">Login</a></li>
+                                <?php 
+                            }
+                        ?>
                     </ul>	  
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->

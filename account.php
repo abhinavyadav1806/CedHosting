@@ -1,8 +1,10 @@
 <?php 
-    require_once("header.php"); 
-
     require_once('class/Dbcon.php');
     require_once('class/User.php');
+
+    use PHPMailer\PHPMailer\PHPMailer;
+	use PHPMailer\PHPMailer\Exception;
+	require 'vendor/autoload.php';
 
     $Dbcon = new Dbcon();
     $User = new User(); 
@@ -19,10 +21,39 @@
 		
         $sql = $User->Signup($name,$email,$mobile,$password,$cnfm_password,$question,$answer,$Dbcon->connect);
         echo $sql;
+
+        $otp = rand(1000,9999);
+        $_SESSION['otp']=$otp;
+        $mail = new PHPMailer();
+        try 
+        {                                       
+            $mail->isSMTP(true);                                             
+            $mail->Host       = 'smtp.gmail.com';                     
+            $mail->SMTPAuth   = true;                              
+            $mail->Username   = 'abhinav1806yadav@gmail.com';                  
+            $mail->Password   = 'nawabeluck';                         
+            $mail->SMTPSecure = 'tls';                               
+            $mail->Port       = 587;   
+            
+            $mail->setfrom('abhinav1806yadav@gmail.com', 'CedHosting');            
+            $mail->addAddress($email); 
+            $mail->addAddress($email, $name); 
+                
+            $mail->isHTML(true);                                   
+            $mail->Subject = 'Otp For Account Verification'; 
+            $mail->Body    = 'Hello User, Here is your OTP for account verification-'.$otp.'<br><b>Never Share Your OTP with anyone<b>'; 
+            $mail->AltBody = 'Body in plain text for non-HTML mail clients';
+            $mail->send();
+            header('location: verification.php?email='.$email);
+        } 
+        catch (Exception $e)
+        {
+            echo "Mailer Error: " . $mail->ErrorInfo;
+        }
     }
 ?>
 
-
+<?php include("header.php"); ?>
 <div class="content">
     <!-- registration -->
     <div class="main-1">
@@ -87,7 +118,7 @@
                     <div class="clearfix"></div>
 
                     <div class="register-but">
-                    <input type="submit" value="Register" name="submit" class="a">
+                    <input type="submit" value="Register" name="submit" class="submit">
                     <div class="clearfix"> </div>
                 </div>
             </form>

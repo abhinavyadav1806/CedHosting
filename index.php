@@ -1,13 +1,17 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-	<?php 
-		include('header.php');
+<?php 
+		session_start();
+		if (isset($_SESSION['userdata'])) {
+			if ($_SESSION['userdata']['is_admin'] == 1) {
+				header('Location: admin/index.php');
+			}
+		}
 		include('class/Dbcon.php');
 		
 		$Dbcon = new Dbcon();
-
-	?>
+?>
+<html>
+<head>
+	<?php include('header.php'); ?>
 </head>
 <body>
 <!---banner--->

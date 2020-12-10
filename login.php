@@ -1,13 +1,28 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<?php
+	session_start();
+	
+	require_once('class/Dbcon.php');
+	require_once('class/User.php');
+
+	$Dbcon = new Dbcon();
+	$User = new User();
+	
+	if(isset($_POST['Login']))
+    {
+        $email = isset($_POST['email']) ? ($_POST['email']) : "";
+		$password = isset($_POST['password']) ? ($_POST['password']) : "";
+		
+        $sql = $User->Login($email, $password, $Dbcon->connect);
+        echo $sql;
+    }
+	
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
-	<?php require('header.php'); ?>
+<?php 
+	include ('header.php');
+?>
 </head>
 <body>
 <!---login--->
@@ -24,17 +39,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="col-md-6 login-right">
 						<h3>registered</h3>
 						<p>If you have an account with us, please log in.</p>
-						<form>
+						<form action="" method="POST">
 							<div>
-							<span>Email Address<label>*</label></span>
-							<input type="text"> 
+								<span>Email<label>*</label></span>
+								<input type="email" name="email" id="email" class="lugwt" onkeydown="return alphaonly3(event);" required >
 							</div>
+
 							<div>
-							<span>Password<label>*</label></span>
-							<input type="password"> 
+								<span>Password<label>*</label></span>
+								<input type="password" name="password" class="lugwt" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" minlength="8" maxlength="16" required>
 							</div>
+
 							<a class="forgot" href="#">Forgot Your Password?</a>
-							<input type="submit" value="Login">
+							<input type="submit" value="Login" name="Login">
 						</form>
 					</div>	
 					<div class="clearfix"> </div>

@@ -1526,8 +1526,18 @@ a.button4:hover {
 	display: block;
 	text-transform: uppercase;
 }
-.login-right input[type="text"],.login-right input[type="password"] {
+.login-right input[type="password"]
+{
 	border: 1px solid #555;
+	outline-color:#08538C;
+	width: 96%;
+	font-size:0.8125em;
+	padding: 0.5em;
+}
+
+#email
+{
+    border: 1px solid #555;
 	outline-color:#08538C;
 	width: 96%;
 	font-size:0.8125em;
@@ -1667,21 +1677,21 @@ a.button4:hover {
 .register-but{
 	margin-top:1em;
 }
-.register-but form input[type="submit"] {
+.submit {
 	background: #e7663f;
-	color: #FFF;
-	font-size: 1.2em;
-	padding: 0.6em 2em;
-	transition: 0.5s all;
-	-webkit-transition: 0.5s all;
-	-moz-transition: 0.5s all;
-	-o-transition: 0.5s all;
-	display: inline-block;
-	text-transform: uppercase;
-	border: none;
-	outline: none;
+    color: #FFF;
+    font-size: 1em;
+    padding: 0.7em 1.2em;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    display: inline-block;
+    text-transform: uppercase;
+    border: none;
+    outline: none;
 }
-.register-but input[type="submit"]:hover {
+.submit:hover {
 	background:#7277d5;
 }
 div.register-bottom-grid {

@@ -60,6 +60,28 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	function alphaonly3(button) {
+		var code = button.which;
+
+		if (count > 0 && code == 190) {
+			console.log(count);
+			count = 0;
+			return true;
+		}
+		console.log(button.which);
+
+		if ((code > 64 && code < 91) || (code < 123 && code > 96) || (code == 08) || (code == 09) || (code > 47 && code <
+				58) || code == 37 || code == 39) {
+			count++;
+			console.log(count);
+			return true;
+		} else {
+			return false;
+		}
+	}
+</script>
 <!-- login -->
 <div>
 	<?php require('footer.php') ?>

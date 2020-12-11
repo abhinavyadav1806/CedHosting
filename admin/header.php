@@ -53,7 +53,7 @@
             </li>
 
             <ul class="nav-item">
-              <a class="nav-link" href="">
+              <a class="nav-link" href="category.php">
               <i class="ni ni-basket text-primary"></i>
               <span class="nav-link-text">Create category</span>
               </a>

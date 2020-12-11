@@ -15,7 +15,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--script-->
 <script src="js/modernizr.custom.97074.js"></script>
 <script src="js/jquery.chocolat.js"></script>
-<script src="js/Js1.js"></script>
 <link rel="stylesheet" href="css/chocolat.css" type="text/css" media="screen">
 <!-- ICON -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -90,7 +89,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             else 
                             { 
                                 ?> 
-                                <li class="<?php if ($file[0] == "login.php") : ?> active<?php endif; ?>">
+                                <li>
                                     <a href="login.php">Login</a></li>
                                 <?php 
                             }

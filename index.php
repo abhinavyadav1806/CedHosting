@@ -1,14 +1,18 @@
 <?php 
-		session_start();
-		if (isset($_SESSION['userdata'])) {
-			if ($_SESSION['userdata']['is_admin'] == 1) {
-				header('Location: admin/index.php');
-			}
+	session_start();
+	include('class/Dbcon.php');
+
+	if (isset($_SESSION['userdata'])) 
+	{
+		if ($_SESSION['userdata']['is_admin'] == 1) 
+		{
+			header('Location: admin/admin.php');
 		}
-		include('class/Dbcon.php');
-		
-		$Dbcon = new Dbcon();
+	}
+
+	$Dbcon = new Dbcon();
 ?>
+
 <html>
 <head>
 	<?php include('header.php'); ?>

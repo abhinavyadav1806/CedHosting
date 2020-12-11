@@ -55,7 +55,7 @@
                     $_SESSION['userdata'] = array('userid'=>$row['id'], 'email'=>$row['email'], 'name'=>$row['name'], 'mobile'=>$row['mobile'], 'email_approved' => $row['email_approved'], 'phone_approved' => $row['phone_approved'], 'active' => $row['active'], 'is_admin' => $row['is_admin'], 'sign_up_date' =>$row['sign_up_date'], 'security_question'=>$row['security_question'], 'security_answer'=>$row['security_answer']);
                     if($_SESSION['userdata']['is_admin'] == 1)
                     {
-                        header("Location: admin/index.php");
+                        header("Location: admin/admin.php");
                     } 
                     if($_SESSION['userdata']['active'] == 1)
                     {
@@ -72,6 +72,24 @@
                 return '<script>alert("INVALID LOGIN DETAILS")</script>'; 
             }
             $connect->close(); 
+        }
+
+        function email_approved($email,$connect)
+        {
+            $sql = "UPDATE tbl_user SET `email_approved` = 1 , `active` = 1 WHERE `email`= '".$email."' ";
+            echo $sql;
+
+            $result=$connect->query($sql);
+            echo "<script> alert('Email-verify successfully..! Please login'); window.location.href = 'login.php'; </script>";  
+        }
+
+        function phone_approved($email,$connect)
+        {
+            $sql = "UPDATE tbl_user SET `phone_approved` = 1 , `active` = 1 WHERE `email`= '".$email."' ";
+            echo $sql;
+
+            $result=$connect->query($sql);
+            echo "<script> alert('Phone-verify successfully..! Please login'); window.location.href = 'login.php'; </script>";  
         }
     }
 ?>

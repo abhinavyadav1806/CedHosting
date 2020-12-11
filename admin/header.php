@@ -53,14 +53,14 @@
             </li>
 
             <ul class="nav-item">
-              <a class="nav-link" href="category.php">
+              <a class="nav-link" href="create-category.php">
               <i class="ni ni-basket text-primary"></i>
               <span class="nav-link-text">Create category</span>
               </a>
             </ul>
 
             <ul class="nav-item">
-              <a class="nav-link" href="">
+              <a class="nav-link" href="add-product.php">
               <i class="ni ni-basket text-primary"></i>
               <span class="nav-link-text">Add Product</span>
               </a>

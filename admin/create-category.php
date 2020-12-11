@@ -13,7 +13,7 @@
         $product_name = $_POST['product_name'];
         $check = isset($_POST['check']) ? 1 : 0;
  
-        $result = $Product->AddProduct($prod_parent_id, $product_name, $check, $Dbcon->connect);
+        $result = $Product->addcategory($prod_parent_id, $product_name, $check, $Dbcon->connect);
         echo $result;
     }
 ?>

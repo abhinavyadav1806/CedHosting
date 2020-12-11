@@ -2,7 +2,7 @@
 
 class Product
 {
-    function AddProduct($prod_parent_id, $product_name, $check, $connect)
+    function addcategory($prod_parent_id, $product_name, $check, $connect)
     {
         $sql = 'INSERT INTO tbl_product(`prod_parent_id`, `prod_name`, `link`, `prod_available`, `prod_launch_date`) VALUES ("'.$prod_parent_id.'", "'.$product_name.'", "", "'.$check.'", NOW())';
 

@@ -63,13 +63,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hosting<i class="caret"></i></a>
                             <ul class="dropdown-menu">
+                                <?php
+                                    $Dbcon = new Dbcon();
+                                    include('class/Product.php');
+                                    $Product = new Product();
+                                    $result = $Product->showcategory($Dbcon->connect);
+                                    foreach ($result as $key => $value) 
+                                    {
+                                        echo "<li><a href=".$value['link'].">".$value['prod_name']."</a></li>";
+                                    }
+                                ?>
+                            </ul>			
+                        </li>
+
+                        <!-- <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hosting<i class="caret"></i></a>
+                            <ul class="dropdown-menu">
                                 <li><a href="linuxhosting.php">Linux hosting</a></li>
                                 <li><a href="wordpresshosting.php">WordPress Hosting</a></li>
                                 <li><a href="windowshosting.php">Windows Hosting</a></li>
                                 <li><a href="cmshosting.php">CMS Hosting</a></li>
                             </ul>			
-                        </li>
-                        
+                        </li> -->
+
                         <li><a href="pricing.php">Pricing</a></li>
                         <li><a href="blog.php">Blog</a></li>
                         <li><a href="contact.php">Contact</a></li>

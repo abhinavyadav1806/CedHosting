@@ -1,11 +1,20 @@
 <?php 
     require_once("header.php");
-
     require_once("../class/Dbcon.php");
     require_once("../class/Product.php");
 
     $Dbcon = new Dbcon();
     $Product = new Product();
+
+    if(!isset($_SESSION['userdata']['name']))
+    {
+    echo "<script> alert('Please Login To Continue'); window.location.href = '../login.php'; </script>";
+    }
+
+    if($_SESSION['userdata']['is_admin'] != 1)
+    {
+    echo "<script> alert('Please Login To Continue'); window.location.href = '../login.php'; </script>";
+    }
 
     if(isset($_POST['create']))
     {
@@ -76,8 +85,6 @@
     <table id="subcategorytable" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <th class="th-sm">Category ID</th>
-                <th class="th-sm">Category Parent ID</th>
                 <th class="th-sm">Category Name</th>
                 <th class="th-sm">Link</th>
                 <th class="th-sm">Availability</th>
@@ -91,15 +98,13 @@
                 {
                     echo 
                     "<tr>
-                        <td>".$value['id']."</td>
-                        <td>".$value['prod_parent_id']."</td>
                         <td>".$value['prod_name']."</td>
                         <td>".$value['link']."</td>
                         <td>".$value['prod_available']."</td>
                         <td>".$value['prod_launch_date']."</td>
 
-                        <td><a href='delete-category.php?id=".$value['id']."' class='btn btn-danger btn-rounded mb-4 sa'>Delete</a>
-                        <a href='delete-category.php?editid=".$value['id']."' class='btn btn-default btn-rounded mb-4' data-toggle='modal' data-target='#modalLoginForm".$value['id']."'>Edit</a></td>
+                        <td><a href='delete-category.php?id=".$value['id']."' class='btn btn-danger btn-rounded mb-4 sa btn-sm'>Delete</a>
+                        <a href='delete-category.php?editid=".$value['id']."' class='btn btn-default btn-rounded mb-4 btn-sm' data-toggle='modal' data-target='#modalLoginForm".$value['id']."'>Edit</a></td>
                     </tr>";
 
                     $b='

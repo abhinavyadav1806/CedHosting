@@ -55,6 +55,37 @@ class Product
         {
             echo "<script>alert('Some Error Occured Try Again');</script>";
         }
-    }    
+    }
+    
+    function addpro_details($pid,$desc,$monthly,$yearly,$sku,$conn)
+    {
+        $sql = "INSERT INTO `tbl_product_description` (`prod_id`,`description`,`mon_price`,`annual_price`,`sku`)
+        VALUES ('".$pid."','".$desc."','".$monthly."','".$yearly."','".$sku."')";
+
+        if ($connect->query($sql) === TRUE) 
+        {
+            //echo "New record created successfully";
+        } else 
+        {
+            //echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+        $conn->close();
+    }
+
+    function addpro($pid,$pname,$conn)
+    {
+        $sql = 'INSERT INTO `tbl_product` (`prod_parent_id`, `prod_name`, `link`,`prod_available`)
+        VALUES ("'.$pid.'", "'.$pname.'", " ","1")';
+        if ($connect->query($sql) === TRUE) 
+        {
+            $last_id = mysqli_insert_id($conn);
+            return $last_id;
+            //echo "New record created successfully. Last inserted ID is: " . $last_id;
+        } else 
+        {
+            // echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+        $conn->close();
+    }
     
 }

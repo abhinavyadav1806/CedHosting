@@ -2,6 +2,22 @@
     require_once('header.php');
     require_once('add-product-header.php');
 
+    require_once("../class/Product.php");
+    require_once("../class/Dbcon.php");
+
+    $Dbcon = new Dbcon();
+    $Product = new Product();
+
+    if(!isset($_SESSION['userdata']['name']))
+    {
+        echo "<script> alert('Please Login To Continue'); window.location.href = '../login.php'; </script>";
+    }
+
+    if($_SESSION['userdata']['is_admin'] != 1)
+    {
+        echo "<script> alert('Please Login To Continue'); window.location.href = '../login.php'; </script>";
+    }
+
     if(isset($_POST['create-now']))
     {
         $q3_selectProduct = $_POST['q3_selectProduct'];
@@ -14,14 +30,30 @@
         $q18_freeDomain = $_POST['q18_freeDomain'];
         $q19_language = $_POST['q19_language'];
         $q20_mailbox = $_POST['q20_mailbox'];
+
+        // echo $_POST['parentid']." ".$_POST["product_name"];
+        $details = array
+        ('webspace'=>$_POST['q16_webSpacein'],
+        'bandwidth'=>$_POST['q17_bandwidthin'],
+        'free_domain'=>$_POST['q18_freeDomain'],
+        'support'=>$_POST['q19_language'],
+        'mailbox'=>$_POST['q20_mailbox'],
+        );
+        
+        $details1=json_encode($details);
+        // echo $details1;
+        //echo $check." ".$_POST['product_name']." ".$link." ".$_POST['parentid'];
+        $sq = $Product->addpro($_POST['parentid'],$_POST['product_name'],$db->conn);
+
+        $sql1 = $Product->addpro_details($sq,$details1,$_POST['monthly'],$_POST['yearly'],$_POST['sku'],$Dbcon->connect);
     }
 
 ?>
 
 <body>
     <!-- action="https://submit.jotform.com/submit/203442420701036/" -->
-    <form class="jotform-form" method="post"
-        name="form_203442420701036" id="203442420701036" accept-charset="utf-8" autocomplete="on">
+    <form class="jotform-form" method="post" name="form_203442420701036" id="203442420701036" accept-charset="utf-8"
+        autocomplete="on">
         <input type="hidden" name="formID" value="203442420701036" />
         <input type="hidden" id="JWTContainer" value="" />
         <input type="hidden" id="cardinalOrderNumber" value="" />
@@ -50,10 +82,22 @@
                         <select class="form-dropdown validate[required]" id="input_3" name="q3_selectProduct"
                             style="width:310px" data-component="dropdown" required="" aria-labelledby="label_3">
                             <option value=""> Please Select </option>
-                            <option value="Linux Hosting"> Linux Hosting </option>
+                            <!-- <option value="Linux Hosting"> Linux Hosting </option>
                             <option value="Windows Hosting"> Windows Hosting </option>
                             <option value="CMS Hosting"> CMS Hosting </option>
-                            <option value="WordPress Hosting"> WordPress Hosting </option>
+                            <option value="WordPress Hosting"> WordPress Hosting </option> -->
+
+                            <?php
+                                $Dbcon = new Dbcon();
+                                include('class/Product.php');
+                                $Product = new Product();
+                                $result = $Product->showcategory($Dbcon->connect);
+                                foreach ($result as $key => $value) 
+                                {
+                                    echo "<option value='".$value['id']."'>".$value['prod_name']."</option>";
+                                }
+                            ?>
+                            
                         </select>
                     </div>
                 </li>

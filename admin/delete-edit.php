@@ -15,6 +15,7 @@
     echo "<script> alert('Please Login To Continue'); window.location.href = '../login.php'; </script>";
     }
 
+    // Category
     if(isset($_GET['id']))
     {
         $id = $_GET['id'];
@@ -24,5 +25,12 @@
     {
         $edit_id = $_GET['editid'];
         $Product->editcategory($edit_id,$Dbcon->connect);
+    }
+
+    // Product
+    if(isset($_GET['del']))
+    {
+        $del_id = $_GET['del'];
+        $Product->deleteproduct($del_id, $Dbcon->connect);
     }
 ?>

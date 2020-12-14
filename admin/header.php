@@ -67,7 +67,7 @@
             </ul>
 
             <ul class="nav-item">
-              <a class="nav-link" href="">
+              <a class="nav-link" href="view-product.php">
               <i class="ni ni-basket text-primary"></i>
               <span class="nav-link-text">View Product</span>
               </a>

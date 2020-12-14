@@ -24,6 +24,7 @@
         $q4_enterProduct = $_POST['q4_enterProduct'];
         $q5_pageUrl = $_POST['q5_pageUrl'];
         $q11_enterMonthly = $_POST['q11_enterMonthly'];
+        $q12_enterAnnual = $_POST['q12_enterAnnual'];
         $q13_sku = $_POST['q13_sku'];
         $q16_webSpacein = $_POST['q16_webSpacein'];
         $q17_bandwidthin = $_POST['q17_bandwidthin'];
@@ -31,21 +32,13 @@
         $q19_language = $_POST['q19_language'];
         $q20_mailbox = $_POST['q20_mailbox'];
 
-        // echo $_POST['parentid']." ".$_POST["product_name"];
-        $details = array
-        ('webspace'=>$_POST['q16_webSpacein'],
-        'bandwidth'=>$_POST['q17_bandwidthin'],
-        'free_domain'=>$_POST['q18_freeDomain'],
-        'support'=>$_POST['q19_language'],
-        'mailbox'=>$_POST['q20_mailbox'],
-        );
+        $Product->addcategory($q3_selectProduct, $q4_enterProduct, $q5_pageUrl, $Dbcon->connect);
         
-        $details1=json_encode($details);
-        // echo $details1;
-        //echo $check." ".$_POST['product_name']." ".$link." ".$_POST['parentid'];
-        $sq = $Product->addpro($_POST['parentid'],$_POST['product_name'],$db->conn);
-
-        $sql1 = $Product->addpro_details($sq,$details1,$_POST['monthly'],$_POST['yearly'],$_POST['sku'],$Dbcon->connect);
+        $age = array("web_space" => $q16_webSpacein, "band_width" => $q17_bandwidthin, "free_domain" => $q18_freeDomain, "mail" => $q20_mailbox, "l/t_support" => $q19_language);
+              
+        $desp = json_encode($age);
+        
+        $Product->insert_product_description($q4_enterProduct, $desp, $q11_enterMonthly, $q12_enterAnnual, $q13_sku, $Dbcon->connect);
     }
 
 ?>
@@ -97,7 +90,7 @@
                                     echo "<option value='".$value['id']."'>".$value['prod_name']."</option>";
                                 }
                             ?>
-                            
+
                         </select>
                     </div>
                 </li>
@@ -169,7 +162,7 @@
                     </label>
                     <div id="cid_12" class="form-input-wide jf-required" data-layout="half">
                         <span class="form-sub-label-container" style="vertical-align:top">
-                            <input type="number" id="input_12" name="q11_enterMonthly" data-type="input-number"
+                            <input type="number" id="input_12" name="q12_enterAnnual" data-type="input-number"
                                 class=" form-number-input form-textbox validate[required]" style="width:310px"
                                 size="310" value="" placeholder="ex: 23" data-component="number"
                                 aria-labelledby="label_12 sublabel_input_12" required="" step="any" />

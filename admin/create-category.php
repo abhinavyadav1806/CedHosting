@@ -20,9 +20,10 @@
     {
         // $product_category = $_POST['product_category'];
         $product_name = $_POST['product_name'];
-        $product_link = $_POST['product_link'];
-
-        $result = $Product->addcategory($product_name, $product_link, $Dbcon->connect);
+        $product_html = $_POST['product_html'];
+        
+        $id=1;
+        $result = $Product->addcategory($id, $product_name, $product_html, $Dbcon->connect);
         echo $result;
     }
 
@@ -30,9 +31,9 @@
     {
         $id=isset($_POST['id'])?$_POST['id']:'';
         $product_name = $_POST['product_name'];
-        $product_link = $_POST['product_link'];
+        $product_html = $_POST['product_html'];
 
-        $result = $Product->editcategory($id, $product_name, $product_link, $Dbcon->connect);
+        $result = $Product->editcategory($id, $product_name, $product_html, $Dbcon->connect);
         echo $result;
     }
 ?>
@@ -61,8 +62,8 @@
         </div>
 
         <div class="form-group">
-            <label for="example-email-input" class="form-control-label">Link</label>
-            <input class="form-control" type="url" id="example-email-input" name="product_link">
+            <label for="example-email-input" class="form-control-label">html</label>
+            <input class="form-control" type="url" id="example-email-input" name="product_html">
         </div>
 
         <!-- <div class="form-group">
@@ -78,35 +79,44 @@
         </div>
     </form>
 </div>
-<hr>
 
 <!-- Display Table Dynamically -->
-<div class="mx-auto">
-    <table id="subcategorytable" cellspacing="0" width="100%">
-        <thead>
+<div class="table-responsive">
+    <table class="table align-items-center table-flush">
+        <thead class="thead-light">
             <tr>
-                <th class="th-sm">Category Name</th>
-                <th class="th-sm">Link</th>
-                <th class="th-sm">Availability</th>
-                <th class="th-sm">Date Added</th>
+                <th scope="col">Category Name</th>
+                <th scope="col">Html</th>
+                <th scope="col">Availability</th>
+                <th scope="col">Date Added</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
-        <tbody>
-            <?php
+        <tbody class="list">
+            <?php 
                 $show_category = $Product->showcategory($Dbcon->connect);
                 foreach ($show_category as $key => $value) 
                 {
                     echo 
                     "<tr>
                         <td>".$value['prod_name']."</td>
-                        <td>".$value['link']."</td>
+                        <td>".$value['html']."</td>
                         <td>".$value['prod_available']."</td>
                         <td>".$value['prod_launch_date']."</td>
 
-                        <td><a href='delete-category.php?id=".$value['id']."' class='btn btn-danger btn-rounded mb-4 sa btn-sm'>Delete</a>
-                        <a href='delete-category.php?editid=".$value['id']."' class='btn btn-default btn-rounded mb-4 btn-sm' data-toggle='modal' data-target='#modalLoginForm".$value['id']."'>Edit</a></td>
+                        <td class='text-right'>
+                            <div class='dropdown'>
+                                <a class='btn btn-sm btn-icon-only text-light' href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                                    <i class='fas fa-ellipsis-v'></i>
+                                </a>
+                                <div class='dropdown-menu dropdown-menu-right dropdown-menu-arrow'>
+                                    <a class='dropdown-item' href='delete-edit.php?id=".$value['id']."'>Delete</a>
+                                    <a class='dropdown-item' data-toggle='modal' href='delete-edit.php?editid=".$value['id']."' data-target='#modalLoginForm".$value['id']."'>Edit</a></td>                             
+                                </div>
+                            </div>
+                        </td>
                     </tr>";
-
+                    
                     $b='
                     <div class="modal fade" id="modalLoginForm'.$value['id'].'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -124,9 +134,9 @@
                                     <div class="md-form mb-5">
                                     <i class="fas fa-envelope prefix grey-text"></i>
                                     <input type ="hidden" value="'.$value['id'].'" name="id" id="defaultForm-email" class="form-control validate id ml-4" readonly >
-                                 
+                                    
                                     <label data-error="wrong" data-success="right" for="defaultForm-email">Id--'.$value['id'].'</label>
-                                  </div>
+                                    </div>
 
                                         <div class="md-form mb-5">
                                             <i class="fas fa-envelope prefix grey-text"></i>
@@ -136,8 +146,8 @@
 
                                         <div class="md-form mb-4">
                                             <i class="fas fa-lock prefix grey-text"></i>
-                                            <label data-error="wrong" data-success="right" for="product_link">Link</label>
-                                            <input type ="text" value="'.$value['link'].'" name="product_link"  id="product_link" class="form-control validate id ml-4">                                       
+                                            <label data-error="wrong" data-success="right" for="product_html">html</label>
+                                            <input type ="text" value="'.$value['html'].'" name="product_html"  id="product_html" class="form-control validate id ml-4">                                       
                                         </div>
                                     </div>
 
@@ -149,22 +159,12 @@
                     </div>
                     </div>';
                     echo $b;
-                }
+                }            
             ?>
         </tbody>
     </table>
 </div>
 
-
 <!-- Footer -->
 <?php include "footer.php";?>
 
-<!-- DataTable -->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
-
-<script>
-$(document).ready(function() {
-    $('#subcategorytable').DataTable();
-})
-</script>

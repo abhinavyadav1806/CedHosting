@@ -109,7 +109,7 @@ $(".mpriceid").focusout(function()
     $("#lablemprice").html("Enter Monthly Price");
     $("#lablemprice").show();
     $("#submit").attr("disabled", true)
-    $(this).css('border', 'solid 3px red');
+    $(this).css('border', 'solid 2px red');
   } 
   else if (!$mprice.match(/^[0-9]\d*(\.\d+)?$/)) 
   {

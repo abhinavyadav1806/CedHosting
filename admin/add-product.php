@@ -149,9 +149,9 @@
                     <div id="cid_11" class="form-input-wide jf-required" data-layout="half">
                         <span class="form-sub-label-container" style="vertical-align:top">
                             <input type="number" id="input_11" name="q11_enterMonthly" data-type="input-number"
-                                class=" form-number-input form-textbox validate[required] mpriceid" style="width:310px"
+                                class="form-number-input form-textbox validate[required] mpriceid" style="width:310px"
                                 size="310" value="" placeholder="ex: 23" data-component="number"
-                                aria-labelledby="label_11 sublabel_input_11" required="" step="any" />
+                                aria-labelledby="label_11 sublabel_input_11" required="" step="any"/>
                             <label class="form-sub-label" for="input_11" id="sublabel_input_11" style="min-height:13px"
                                 aria-hidden="false"> This would be Monthly Plan </label>
                         </span>

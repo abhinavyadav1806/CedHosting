@@ -71,7 +71,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     $result = $Product->showcategory($Dbcon->connect);
                                     foreach ($result as $key => $value) 
                                     {
-                                        echo "<li><a href=".$value['html'].">".$value['prod_name']."</a></li>";
+                                        echo "<li><a href=".$value['html']."?id=".$value['id'].">".$value['prod_name']."</a></li>";
                                     }
                                 ?>
                             </ul>			

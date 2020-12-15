@@ -1,14 +1,9 @@
 <?php 
     session_start();
-    require_once('class/Dbcon.php');
-    require_once('class/User.php');
 
     use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\Exception;
 	require 'vendor/autoload.php';
-
-    $Dbcon = new Dbcon();
-    $User = new User(); 
 
     if(isset($_POST['submit']))
     {
@@ -46,7 +41,14 @@
             $mail->Body    = 'Hello User, Here is your OTP for account verification--'.$otp.'<br><b>Never Share Your OTP with anyone<b>'; 
             $mail->AltBody = 'Body in plain text for non-HTML mail clients';
             $mail->send();
-            header('location: verification.php?email='.$email."&mobile=".$mobile);
+            if($password != $cnfm_password)
+            {
+                return '<script> alert("Enter Same Password") </script>';
+            }
+            else
+            {
+                header('location: verification.php?email='.$email."&mobile=".$mobile);
+            }
         } 
         catch (Exception $e)
         {

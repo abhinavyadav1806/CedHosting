@@ -1,14 +1,14 @@
 <?php
 	session_start();
 	
-	require_once('class/Dbcon.php');
-	require_once('class/User.php');
-
-	$Dbcon = new Dbcon();
-	$User = new User();
-	
 	if(isset($_POST['Login']))
     {
+		include('class/Dbcon.php');
+		include('class/User.php');
+
+		$User = new User();
+		$Dbcon = new Dbcon();
+		
         $email = isset($_POST['email']) ? ($_POST['email']) : "";
 		$password = isset($_POST['password']) ? ($_POST['password']) : "";
 		
@@ -20,9 +20,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<?php 
-	include ('header.php');
-?>
+ <?php include ('header.php'); ?>
 </head>
 <body>
 <!---login--->

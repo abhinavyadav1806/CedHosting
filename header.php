@@ -64,13 +64,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hosting<i class="caret"></i></a>
                             <ul class="dropdown-menu">
                                 <?php
+                                    include('class/Dbcon.php');
                                     $Dbcon = new Dbcon();
                                     include('class/Product.php');
                                     $Product = new Product();
                                     $result = $Product->showcategory($Dbcon->connect);
                                     foreach ($result as $key => $value) 
                                     {
-                                        echo "<li><a href=".$value['link'].">".$value['prod_name']."</a></li>";
+                                        echo "<li><a href=".$value['html'].">".$value['prod_name']."</a></li>";
                                     }
                                 ?>
                             </ul>			

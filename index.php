@@ -1,6 +1,5 @@
 <?php 
 	session_start();
-	include('class/Dbcon.php');
 
 	if (isset($_SESSION['userdata'])) 
 	{
@@ -9,8 +8,6 @@
 			header('Location: admin/admin.php');
 		}
 	}
-
-	$Dbcon = new Dbcon();
 ?>
 
 <html>

@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-	<?php require('header.php'); ?>
+	<?php include('header.php'); ?>
 </head>
 <body>
 <!---blog--->

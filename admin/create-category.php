@@ -58,8 +58,9 @@
 
         <div class="form-group">
             <label for="example-text-input" class="form-control-label">Category Name</label>
-            <input class="form-control" type="text" id="example-text-input" name="product_name">
+            <input class="category_name form-control" type="text" id="example-text-input" name="product_name">
         </div>
+        <p id="category_name"></p>
 
         <div class="form-group">
             <label for="example-email-input" class="form-control-label">html</label>

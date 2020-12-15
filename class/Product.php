@@ -25,7 +25,7 @@ class Product
     function showcategory($connect)
     {
         $arry = array();
-        $sql = "SELECT * from tbl_product";
+        $sql = "SELECT * from tbl_product WHERE prod_available = 1";
         $result = $connect->query($sql);
 
         if ($result->num_rows > 0) 

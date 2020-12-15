@@ -29,7 +29,7 @@
 
     if(isset($_POST['submitt']))
     {
-        $id=isset($_POST['id'])?$_POST['id']:'';
+        $id = isset($_POST['id']) ? $_POST['id']: '';
         $product_name = $_POST['product_name'];
         $product_html = $_POST['product_html'];
 
@@ -53,7 +53,7 @@
         <div class="form-group">
             <label class="form-control-label" for="input-username">Category</label>
             <input type="text" name="product_category" id="input-username" class="form-control" value="hosting"
-                readonly>
+                disabled>
         </div>
 
         <div class="form-group">
